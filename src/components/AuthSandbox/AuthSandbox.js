@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import './style.css';
 
 class AuthSandbox extends Component {
 
@@ -42,32 +43,19 @@ class AuthSandbox extends Component {
     });
   }
 
-  getPets = () => {
-    axios({
-      method: 'GET',
-      url: '/api/pet'
-    }).then(res => {
-      console.log('GET /pet', res.data);
-    })
-  };
-
   render() {
     return (
-      <>
+      <div className='authSandbox'>
         <h1>Auth Sandbox</h1>
 
         <p>
           <button onClick={this.register}>Register</button>
           <button onClick={this.login}>Login</button>
           <button onClick={this.logout}>Logout</button>
-        </p>
-
-        <p>
           <button onClick={this.getUser}>Get User</button>
-          <button onClick={this.getPets}>Get Pets</button>
         </p>
 
-      </>
+      </div>
     )
   }
 }
