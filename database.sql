@@ -14,3 +14,10 @@ CREATE TABLE "pet" (
     "firstname" VARCHAR (80) UNIQUE NOT NULL,
     "user_id" INT REFERENCES "user"
 );
+
+INSERT INTO "user" ("username", "password")
+VALUES ('petLover76', '$2a$10$s90NWQOLD96j9EogiBa3gOG/OKb9UKVE53K4i5qWPra0Jeg0pp51e');
+-- pw = unicorn123
+
+INSERT INTO "pet" ("firstname", "user_id")
+VALUES ('Fido', 1), ('Snowball', 1);
