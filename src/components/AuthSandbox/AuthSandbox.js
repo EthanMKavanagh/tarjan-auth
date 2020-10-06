@@ -1,14 +1,25 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class AuthSandbox extends Component {
 
-  componentDidMount() {
+
+  register = () => {
+    axios({
+      method: 'POST',
+      url: '/api/user/register',
+      data: {
+        username: 'schmedan',
+        password: 'unicorn123'
+      }
+    });
   }
 
   render() {
     return (
       <>
         <h1>Auth Sandbox</h1>
+        <button onClick={this.register}>Register</button>
       </>
     )
   }
