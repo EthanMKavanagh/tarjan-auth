@@ -4,6 +4,10 @@ import './style.css';
 
 class AuthSandbox extends Component {
 
+  state = {
+    mode: document.cookie.split('=')[1]
+  }
+
 
   register = () => {
     axios({
@@ -43,9 +47,19 @@ class AuthSandbox extends Component {
     });
   }
 
+  setMode = (event) => {
+    let mode = event.target.value;
+    document.cookie = `mode=${event.target.value}`;
+    this.setState({
+      mode: mode
+    });
+  }
+
   render() {
     return (
-      <div className='authSandbox'>
+      <div 
+        className={`authSandbox ${this.state.mode}`} 
+      >
         <h1>Auth Sandbox</h1>
 
         <p>
@@ -53,6 +67,28 @@ class AuthSandbox extends Component {
           <button onClick={this.login}>Login</button>
           <button onClick={this.logout}>Logout</button>
           <button onClick={this.getUser}>Get User</button>
+        </p>
+
+        <p>
+          <label>
+            <input 
+              type="radio"
+              name="mode"
+              value="light"
+              onChange={this.setMode}
+            />
+            Light Mode
+          </label>
+
+          <label>
+            <input 
+              type="radio"
+              name="mode"
+              value="dark"
+              onChange={this.setMode}
+            />
+            Dark Mode
+          </label>
         </p>
 
       </div>

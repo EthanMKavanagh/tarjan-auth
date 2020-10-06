@@ -8,3 +8,12 @@
   margin: 0 auto;
   padding: 20px;
 }
+
+.authSandbox.light {
+  background: peachpuff;
+}
+
+.authSandbox.dark {
+  background: black;
+  color: white;
+}
