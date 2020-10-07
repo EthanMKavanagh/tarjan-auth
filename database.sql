@@ -6,7 +6,8 @@
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
+    "authLevel" VARCHAR (80)
 );
 
 CREATE TABLE "pet" (
@@ -15,7 +16,7 @@ CREATE TABLE "pet" (
     "user_id" INT REFERENCES "user"
 );
 
-INSERT INTO "user" ("username", "password")
+INSERT INTO "user" ("username", "password", "authLevel")
 VALUES ('petLover76', '$2a$10$s90NWQOLD96j9EogiBa3gOG/OKb9UKVE53K4i5qWPra0Jeg0pp51e');
 -- pw = unicorn123
 

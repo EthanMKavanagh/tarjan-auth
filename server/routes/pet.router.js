@@ -8,8 +8,19 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('/pet GET route');
     console.log('is authenticated?', req.isAuthenticated());
     console.log('user', req.user);
-    let queryText = `SELECT * FROM "pet" WHERE user_id = $1;`;
-    pool.query(queryText, [req.user.id]).then((result) => {
+
+    // Allows difference between ADMIN and normal USER
+    let queryText, queryParams;
+    if (req.user.authLevel === 'ADMIN') {
+        queryText = 'SELECT * FROM "pet";';
+        queryParams = []
+    }
+    else {
+        queryText = `SELECT * FROM "pet" WHERE user_id = $1;`
+        queryParams = [req.user.id]
+    }
+
+    pool.query(queryText, queryParams).then((result) => {
         res.send(result.rows);
     }).catch((error) => {
         console.log(error);
