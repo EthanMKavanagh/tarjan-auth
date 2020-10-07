@@ -4,12 +4,12 @@ const pool = require('../modules/pool');
 const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 
 // This route *should* return the logged in users pets
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     console.log('/pet GET route');
     console.log('is authenticated?', req.isAuthenticated());
     console.log('user', req.user);
-    let queryText = `SELECT * FROM "pet"`;
-    pool.query(queryText).then((result) => {
+    let queryText = `SELECT * FROM "pet" WHERE user_id = $1;`;
+    pool.query(queryText, [req.user.id]).then((result) => {
         res.send(result.rows);
     }).catch((error) => {
         console.log(error);
