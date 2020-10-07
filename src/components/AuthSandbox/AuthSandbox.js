@@ -56,6 +56,25 @@ class AuthSandbox extends Component {
     });
   }
 
+  getPets = () => {
+    axios({
+      method: 'GET',
+      url: '/api/pet'
+    }).then(response => {
+      console.log('GET /pet', response.data);
+    });
+  }
+
+  createPet = () => {
+    axios({
+      method: 'POST',
+      url: '/api/pet',
+      data: {
+        firstname: 'FuzzyWuzzy'
+      }
+    });
+  }
+
   render() {
     return (
       <div
@@ -70,6 +89,8 @@ class AuthSandbox extends Component {
         </p>
         <p>
           <button onClick={this.getUser}>Get User</button>
+          <button onClick={this.getPets}>Get Pets</button>
+          <button onClick={this.createPet}>Create Pet</button>
         </p>
 
         <label>

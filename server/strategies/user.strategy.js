@@ -7,6 +7,7 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
+// Determines the value of req.user in our endpoints
 passport.deserializeUser((id, done) => {
   pool.query('SELECT * FROM "user" WHERE id = $1', [id]).then((result) => {
     // Handle Errors
