@@ -17,8 +17,10 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import AuthSandbox from '../AuthSandbox/AuthSandbox';
+import PetList from '../Pets/PetsList';
 
 import './App.css';
+
 
 class App extends Component {
   componentDidMount () {
@@ -61,6 +63,12 @@ class App extends Component {
               exact 
               path="/sandbox"
               component={AuthSandbox}
+            />
+
+            <Route
+              exact
+              path="/pets"
+              component={PetList}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
