@@ -12,10 +12,24 @@ class PetList extends Component {
     render() {
         return (
             <>
-                <h1>Pets!!!!</h1>
+                <h1>{this.props.user.username}'s Pets!!!</h1>
+                <ul>
+                    {this.props.pets.map(pet =>
+                        <li key={pet.id}>
+                            {pet.firstname}
+                            {this.props.user.authLevel === 'ADMIN' ?
+                                <button>Delete</button> :
+                                null
+                            }
+                        </li>    
+                    )}
+                </ul>
             </>
         );
     }
 }
-
-export default connect()(PetList);
+const mapStateToProps = (reduxState) => ({
+    pets: reduxState.pets,
+    user: reduxState.user
+});
+export default connect(mapStateToProps)(PetList);

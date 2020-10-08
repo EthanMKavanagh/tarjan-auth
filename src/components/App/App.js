@@ -23,8 +23,11 @@ import './App.css';
 
 
 class App extends Component {
+  
   componentDidMount () {
-    //this.props.dispatch({type: 'FETCH_USER'})
+    this.props.dispatch({
+      type: 'FETCH_USER'
+    });
   }
 
   render() {
@@ -65,7 +68,7 @@ class App extends Component {
               component={AuthSandbox}
             />
 
-            <Route
+            <ProtectedRoute
               exact
               path="/pets"
               component={PetList}
